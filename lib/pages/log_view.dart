@@ -2,46 +2,56 @@
 
 part of 'pages.dart';
 
-class dashboard extends StatefulWidget {
-  const dashboard({Key? key}) : super(key: key);
+class logView extends StatefulWidget {
+  const logView({Key? key}) : super(key: key);
 
   @override
-  State<dashboard> createState() => _dashboardState();
+  State<logView> createState() => _logViewState();
 }
 
-class _dashboardState extends State<dashboard> {
-  late List<LiveData> chartData;
-  late List<LiveData> chartData2;
-  late List<LiveData> chartData3;
-  late List<LiveData> chartData4;
-  late List<LiveData> chartData5;
-  late List<LiveData> chartData6;
-  late List<LiveData> chartData7;
-  late List<LiveData> chartData8;
-  late chart.ChartSeriesController _chartSeriesController;
-  late chart.ChartSeriesController _chartSeriesController2;
-  late chart.ChartSeriesController _chartSeriesController3;
-  late chart.ChartSeriesController _chartSeriesController4;
-  late chart.ChartSeriesController _chartSeriesController5;
-  late chart.ChartSeriesController _chartSeriesController6;
-  late chart.ChartSeriesController _chartSeriesController7;
-  late chart.ChartSeriesController _chartSeriesController8;
+class _logViewState extends State<logView> {
+  // final TextEditingController _date = TextEditingController();
+  // final DateRangePickerController _dateRangePickerController =
+  // DateRangePickerController();
+
+  List<String> data = [
+    "Yesterday",
+    "Italia (Disabled)",
+    "Tunisia",
+    'Canada',
+  ];
+
+  late List<LiveData> chartData9;
+  late List<LiveData> chartData10;
+  late List<LiveData> chartData11;
+  late List<LiveData> chartData12;
+  late List<LiveData> chartData13;
+  late List<LiveData> chartData14;
+  late List<LiveData> chartData15;
+  late List<LiveData> chartData16;
+  late chart.ChartSeriesController _chartSeriesController9;
+  late chart.ChartSeriesController _chartSeriesController10;
+  late chart.ChartSeriesController _chartSeriesController11;
+  late chart.ChartSeriesController _chartSeriesController12;
+  late chart.ChartSeriesController _chartSeriesController13;
+  late chart.ChartSeriesController _chartSeriesController14;
+  late chart.ChartSeriesController _chartSeriesController15;
+  late chart.ChartSeriesController _chartSeriesController16;
 
   @override
   void initState() {
-    chartData = getChartData();
-    chartData2 = getChartData2();
-    chartData3 = getChartData3();
-    chartData4 = getChartData4();
-    chartData5 = getChartData5();
-    chartData6 = getChartData6();
-    chartData7 = getChartData7();
-    chartData8 = getChartData8();
+    chartData9 = getChartData();
+    chartData10 = getChartData2();
+    chartData11 = getChartData3();
+    chartData12 = getChartData4();
+    chartData13 = getChartData5();
+    chartData14 = getChartData6();
+    chartData15 = getChartData7();
+    chartData16 = getChartData8();
     Timer.periodic(const Duration(minutes: 3), updateDataSource);
     super.initState();
   }
 
-  //!Body
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +60,7 @@ class _dashboardState extends State<dashboard> {
         children: [
           Container(
             width: 414,
-            height: 363,
+            height: 224,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
@@ -63,223 +73,42 @@ class _dashboardState extends State<dashboard> {
             child: Container(
               margin: const EdgeInsets.all(10),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 30,
                   ),
                   Text(
-                    'Room 1',
+                    'Date Picker',
                     style: selamatdatangTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
-                  //!Grafik Suhu
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 121,
-                                  height: 121,
-                                  child: SfRadialGauge(
-                                    axes: <RadialAxis>[
-                                      RadialAxis(
-                                        axisLineStyle: const AxisLineStyle(
-                                          thickness: 0.2,
-                                          thicknessUnit: GaugeSizeUnit.factor,
-                                          cornerStyle: CornerStyle.bothCurve,
-                                        ),
-                                        showTicks: false,
-                                        showLabels: false,
-                                        onAxisTapped: (value) {},
-                                        pointers: <GaugePointer>[
-                                          RangePointer(
-                                            color: Colors.white,
-                                            value: 60,
-                                            onValueChanged: (value) {},
-                                            cornerStyle: CornerStyle.bothCurve,
-                                            onValueChangeEnd: (value) {},
-                                            onValueChangeStart: (value) {},
-                                            enableDragging: true,
-                                            width: 0.2,
-                                            sizeUnit: GaugeSizeUnit.factor,
-                                          ),
-                                        ],
-                                        annotations: <GaugeAnnotation>[
-                                          GaugeAnnotation(
-                                            widget: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "65.0",
-                                                  style: wikwokTextStyle,
-                                                ),
-                                                Text(
-                                                  "suhu",
-                                                  style: meTextStyle,
-                                                )
-                                              ],
-                                            ),
-                                            positionFactor: 0.13,
-                                            angle: 0.5,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Rata-rata Suhu",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Suhu Tertinggi",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Suhu Terendah",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                              ],
-                            ),
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70),
+                    child: DropdownSearch<String>(
+                      popupProps: const PopupProps.menu(
+                        showSelectedItems: true,
+                      ),
+                      items: data,
+                      dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          labelText: "Pilih Data",
                         ),
                       ),
-                      //! Grafik Kelembapan
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 121,
-                                  height: 121,
-                                  child: SfRadialGauge(
-                                    axes: <RadialAxis>[
-                                      RadialAxis(
-                                        axisLineStyle: const AxisLineStyle(
-                                          thickness: 0.2,
-                                          thicknessUnit: GaugeSizeUnit.factor,
-                                          cornerStyle: CornerStyle.bothCurve,
-                                        ),
-                                        showTicks: false,
-                                        showLabels: false,
-                                        onAxisTapped: (value) {},
-                                        pointers: <GaugePointer>[
-                                          RangePointer(
-                                            color: Colors.white,
-                                            value: 60,
-                                            onValueChanged: (value) {},
-                                            cornerStyle: CornerStyle.bothCurve,
-                                            onValueChangeEnd: (value) {},
-                                            onValueChangeStart: (value) {},
-                                            enableDragging: true,
-                                            width: 0.2,
-                                            sizeUnit: GaugeSizeUnit.factor,
-                                          ),
-                                        ],
-                                        annotations: <GaugeAnnotation>[
-                                          GaugeAnnotation(
-                                            widget: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "65.0",
-                                                  style: wikwokTextStyle,
-                                                ),
-                                                Text(
-                                                  "Kelembapan",
-                                                  style: meTextStyle.copyWith(
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            ),
-                                            positionFactor: 0.13,
-                                            angle: 0.5,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Rata-rata Kelembapan",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Kelembapan Tertinggi",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Kelembapan Terendah",
-                                  style: meTextStyle,
-                                ),
-                                Text(
-                                  "25",
-                                  style: wikwokTextStyle,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      onChanged: print,
+                      clearButtonProps: const ClearButtonProps(isVisible: true),
+                    ),
                   ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
           ),
-          // SizedBox(
-          //   height: 19,
-          // ),
+
           //!Scrollview
           Expanded(
             child: SingleChildScrollView(
@@ -340,9 +169,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController = controller;
+                                      _chartSeriesController9 = controller;
                                     },
-                                    dataSource: chartData,
+                                    dataSource: chartData9,
                                     color: Colors.blue,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -352,9 +181,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController2 = controller;
+                                      _chartSeriesController10 = controller;
                                     },
-                                    dataSource: chartData2,
+                                    dataSource: chartData10,
                                     color: Colors.red,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -435,9 +264,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController3 = controller;
+                                      _chartSeriesController11 = controller;
                                     },
-                                    dataSource: chartData3,
+                                    dataSource: chartData11,
                                     color: Colors.blue,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -447,9 +276,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController4 = controller;
+                                      _chartSeriesController12 = controller;
                                     },
-                                    dataSource: chartData4,
+                                    dataSource: chartData12,
                                     color: Colors.red,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -530,9 +359,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController5 = controller;
+                                      _chartSeriesController13 = controller;
                                     },
-                                    dataSource: chartData5,
+                                    dataSource: chartData13,
                                     color: Colors.blue,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -542,9 +371,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController6 = controller;
+                                      _chartSeriesController14 = controller;
                                     },
-                                    dataSource: chartData6,
+                                    dataSource: chartData14,
                                     color: Colors.red,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -625,9 +454,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController7 = controller;
+                                      _chartSeriesController15 = controller;
                                     },
-                                    dataSource: chartData7,
+                                    dataSource: chartData15,
                                     color: Colors.blue,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -637,9 +466,9 @@ class _dashboardState extends State<dashboard> {
                                     onRendererCreated:
                                         (chart.ChartSeriesController
                                             controller) {
-                                      _chartSeriesController8 = controller;
+                                      _chartSeriesController16 = controller;
                                     },
-                                    dataSource: chartData8,
+                                    dataSource: chartData16,
                                     color: Colors.red,
                                     xValueMapper: (LiveData sales, _) =>
                                         sales.time,
@@ -665,7 +494,7 @@ class _dashboardState extends State<dashboard> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     )
                   ],
                 ),
@@ -680,38 +509,38 @@ class _dashboardState extends State<dashboard> {
   //!Ini buat timer line grafik chartnya
   int time = 19;
   void updateDataSource(Timer timer) {
-    chartData.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData.removeAt(0);
-    _chartSeriesController.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData2.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData2.removeAt(0);
-    _chartSeriesController2.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData3.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData3.removeAt(0);
-    _chartSeriesController3.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData4.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData4.removeAt(0);
-    _chartSeriesController4.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData5.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData5.removeAt(0);
-    _chartSeriesController5.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData6.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData6.removeAt(0);
-    _chartSeriesController6.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData7.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData7.removeAt(0);
-    _chartSeriesController7.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData8.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData8.removeAt(0);
-    _chartSeriesController8.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
+    chartData9.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData9.removeAt(0);
+    _chartSeriesController9.updateDataSource(
+        addedDataIndex: chartData9.length - 1, removedDataIndex: 0);
+    chartData10.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData10.removeAt(0);
+    _chartSeriesController10.updateDataSource(
+        addedDataIndex: chartData10.length - 1, removedDataIndex: 0);
+    chartData11.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData11.removeAt(0);
+    _chartSeriesController11.updateDataSource(
+        addedDataIndex: chartData11.length - 1, removedDataIndex: 0);
+    chartData12.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData12.removeAt(0);
+    _chartSeriesController12.updateDataSource(
+        addedDataIndex: chartData12.length - 1, removedDataIndex: 0);
+    chartData13.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData13.removeAt(0);
+    _chartSeriesController13.updateDataSource(
+        addedDataIndex: chartData13.length - 1, removedDataIndex: 0);
+    chartData14.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData14.removeAt(0);
+    _chartSeriesController14.updateDataSource(
+        addedDataIndex: chartData14.length - 1, removedDataIndex: 0);
+    chartData15.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData15.removeAt(0);
+    _chartSeriesController15.updateDataSource(
+        addedDataIndex: chartData15.length - 1, removedDataIndex: 0);
+    chartData16.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
+    chartData16.removeAt(0);
+    _chartSeriesController16.updateDataSource(
+        addedDataIndex: chartData16.length - 1, removedDataIndex: 0);
   }
 
   //!Ini buat data yang diambil chartnya
@@ -912,53 +741,53 @@ class _dashboardState extends State<dashboard> {
 }
 
 //!Ini buat pemanggilan class Livedatanya
-class LiveData {
-  LiveData(this.time, this.speed);
+class LiveData9 {
+  LiveData9(this.time, this.speed);
   final int time;
   final num speed;
 }
 
-class LiveData2 {
-  LiveData2(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-//!Ini buat pemanggilan class Livedatanya
-class LiveData3 {
-  LiveData3(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-class LiveData4 {
-  LiveData4(this.time, this.speed);
+class LiveData10 {
+  LiveData10(this.time, this.speed);
   final int time;
   final num speed;
 }
 
 //!Ini buat pemanggilan class Livedatanya
-class LiveData5 {
-  LiveData5(this.time, this.speed);
+class LiveData11 {
+  LiveData11(this.time, this.speed);
   final int time;
   final num speed;
 }
 
-class LiveData6 {
-  LiveData6(this.time, this.speed);
+class LiveData12 {
+  LiveData12(this.time, this.speed);
   final int time;
   final num speed;
 }
 
 //!Ini buat pemanggilan class Livedatanya
-class LiveData7 {
-  LiveData7(this.time, this.speed);
+class LiveData13 {
+  LiveData13(this.time, this.speed);
   final int time;
   final num speed;
 }
 
-class LiveData8 {
-  LiveData8(this.time, this.speed);
+class LiveData14 {
+  LiveData14(this.time, this.speed);
+  final int time;
+  final num speed;
+}
+
+//!Ini buat pemanggilan class Livedatanya
+class LiveData15 {
+  LiveData15(this.time, this.speed);
+  final int time;
+  final num speed;
+}
+
+class LiveData16 {
+  LiveData16(this.time, this.speed);
   final int time;
   final num speed;
 }

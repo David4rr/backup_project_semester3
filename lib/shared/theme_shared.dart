@@ -22,9 +22,3 @@ TextStyle wikwokTextStyle = GoogleFonts.barlow(
     fontSize: 20, color: textColor, fontWeight: FontWeight.bold);
 TextStyle meTextStyle = GoogleFonts.barlow(
     fontSize: 14, color: textColor, fontWeight: FontWeight.bold);
-
-Gradient backgroundGradient = LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  colors: [Color(0xFF16D682), Color(0xFF05BE5E)],
-);

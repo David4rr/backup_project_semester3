@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 part of 'pages.dart';
 
 class selamatdatang extends StatefulWidget {
@@ -49,12 +51,13 @@ class _selamatdatangState extends State<selamatdatang> {
             const SizedBox(
               height: 51,
             ),
-            Container(
+            SizedBox(
                 height: 60,
                 width: MediaQuery.of(context).size.width - 2 * defaultmargin,
                 child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
+                          isDismissible: false,
                           isScrollControlled: true,
                           context: context,
                           builder: (context) {
@@ -137,7 +140,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Nama Depan",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -150,7 +153,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Nama Belakang",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -159,11 +162,11 @@ class _selamatdatangState extends State<selamatdatang> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
-                                                hintText: "Fullname",
-                                                labelText: "Fullname",
+                                                hintText: "Username",
+                                                labelText: "Username",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -176,7 +179,33 @@ class _selamatdatangState extends State<selamatdatang> {
                                                 labelText: "Email",
                                               )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
+                                              ),
+
+                                              TextField(
+                                                  decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: "Asal Institusi",
+                                                labelText: "Asal Institusi",
+                                              )),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+
+                                              TextField(
+                                                  decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: "Kegiatan",
+                                                labelText: "Kegiatan",
+                                              )),
+                                              const SizedBox(
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -203,7 +232,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                         }),
                                                   )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
 
                                               TextField(
@@ -234,9 +263,9 @@ class _selamatdatangState extends State<selamatdatang> {
                                                         }),
                                                   )),
                                               const SizedBox(
-                                                height: 20,
+                                                height: 10,
                                               ),
-                                              Container(
+                                              SizedBox(
                                                   height: 60,
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -244,6 +273,13 @@ class _selamatdatangState extends State<selamatdatang> {
                                                       2 * defaultmargin,
                                                   child: ElevatedButton(
                                                       onPressed: () {},
+                                                      style: ElevatedButton.styleFrom(
+                                                          primary: primaryColor,
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15))),
                                                       child: Text(
                                                         'Registrasi',
                                                         style: buttonStyle
@@ -252,14 +288,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
-                                                      ),
-                                                      style: ElevatedButton.styleFrom(
-                                                          primary: primaryColor,
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15))))),
+                                                      ))),
                                               const SizedBox(
                                                 height: 10,
                                               ),
@@ -293,26 +322,27 @@ class _selamatdatangState extends State<selamatdatang> {
                             });
                           });
                     },
+                    style: ElevatedButton.styleFrom(
+                        primary: button2Color,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
                     child: Text(
                       'Register',
                       style: deskripsiTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: primaryColor),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        primary: button2Color,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))))),
+                    ))),
             const SizedBox(
               height: 15,
             ),
-            Container(
+            SizedBox(
                 height: 60,
                 width: MediaQuery.of(context).size.width - 2 * defaultmargin,
                 child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
+                          isDismissible: false,
                           isScrollControlled: true,
                           context: context,
                           builder: (context) {
@@ -425,17 +455,14 @@ class _selamatdatangState extends State<selamatdatang> {
                                               const SizedBox(
                                                 height: 15,
                                               ),
-                                              Row(children: [
-                                                Container(
-                                                  child:
-                                                      Text("Forgot Password ?"),
-                                                )
+                                              Row(children: const [
+                                                Text("Forgot Password ?")
                                               ]),
 
                                               const SizedBox(
                                                 height: 15,
                                               ),
-                                              Container(
+                                              SizedBox(
                                                   height: 60,
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -448,10 +475,17 @@ class _selamatdatangState extends State<selamatdatang> {
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                const dashboard(),
+                                                                const navigasiPage(),
                                                           ),
                                                         );
                                                       },
+                                                      style: ElevatedButton.styleFrom(
+                                                          primary: primaryColor,
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15))),
                                                       child: Text(
                                                         'Login',
                                                         style: buttonStyle
@@ -462,14 +496,7 @@ class _selamatdatangState extends State<selamatdatang> {
                                                                         .w500,
                                                                 color:
                                                                     button2Color),
-                                                      ),
-                                                      style: ElevatedButton.styleFrom(
-                                                          primary: primaryColor,
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15))))),
+                                                      ))),
                                               const SizedBox(
                                                 height: 10,
                                               ),
@@ -503,18 +530,18 @@ class _selamatdatangState extends State<selamatdatang> {
                             });
                           });
                     },
+                    style: ElevatedButton.styleFrom(
+                        primary: primaryColor,
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(color: button2Color, width: 3),
+                            borderRadius: BorderRadius.circular(15))),
                     child: Text(
                       'Login',
                       style: buttonStyle.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: button2Color),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        primary: primaryColor,
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(color: button2Color, width: 3),
-                            borderRadius: BorderRadius.circular(15))))),
+                    ))),
           ],
         ),
       ),

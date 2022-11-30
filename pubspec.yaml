@@ -27,12 +27,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  avatar_view: ^1.0.1
+  convex_bottom_bar: ^3.1.0+1
   cupertino_icons: ^1.0.2
-  syncfusion_flutter_charts: ^20.3.57
+  dropdown_search: ^5.0.3
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
-
+  intl: ^0.17.0
+  syncfusion_flutter_charts: ^20.3.57
+  syncfusion_flutter_datepicker: ^20.3.58
   syncfusion_flutter_gauges: ^20.3.57
 
 dev_dependencies:

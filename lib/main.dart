@@ -3,7 +3,7 @@ import 'package:mop_green/pages/pages.dart';
 import 'package:mop_green/shared/shared.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colorpalette.purpleColor,
           primaryColor: primaryColor,
           canvasColor: Colors.transparent),
-      home: selamatdatang(),
+      home: const selamatdatang(),
     );
   }
 }
