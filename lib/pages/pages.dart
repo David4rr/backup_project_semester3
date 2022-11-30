@@ -10,7 +10,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:avatar_view/avatar_view.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 // import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 part 'selamatdatang_pages.dart';
 part 'dashboard.dart';
@@ -18,3 +18,4 @@ part 'log_view.dart';
 part 'user.dart';
 part 'navigasi.dart';
 part 'profil.dart';
+part 'about_us.dart';

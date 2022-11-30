@@ -99,7 +99,7 @@ class _userPageState extends State<userPage> {
                           size: 35,
                         ),
                         title: const Text(
-                          "About",
+                          "About Us",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Row(
@@ -111,6 +111,14 @@ class _userPageState extends State<userPage> {
                             Icon(Icons.arrow_forward_ios_outlined),
                           ],
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const aboutUs(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
