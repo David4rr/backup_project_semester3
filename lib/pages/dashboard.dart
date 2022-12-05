@@ -10,36 +10,13 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  late List<LiveData> chartData;
-  late List<LiveData> chartData2;
-  late List<LiveData> chartData3;
-  late List<LiveData> chartData4;
-  late List<LiveData> chartData5;
-  late List<LiveData> chartData6;
-  late List<LiveData> chartData7;
-  late List<LiveData> chartData8;
-  late chart.ChartSeriesController _chartSeriesController;
-  late chart.ChartSeriesController _chartSeriesController2;
-  late chart.ChartSeriesController _chartSeriesController3;
-  late chart.ChartSeriesController _chartSeriesController4;
-  late chart.ChartSeriesController _chartSeriesController5;
-  late chart.ChartSeriesController _chartSeriesController6;
-  late chart.ChartSeriesController _chartSeriesController7;
-  late chart.ChartSeriesController _chartSeriesController8;
-
-  @override
-  void initState() {
-    chartData = getChartData();
-    chartData2 = getChartData2();
-    chartData3 = getChartData3();
-    chartData4 = getChartData4();
-    chartData5 = getChartData5();
-    chartData6 = getChartData6();
-    chartData7 = getChartData7();
-    chartData8 = getChartData8();
-    Timer.periodic(const Duration(minutes: 3), updateDataSource);
-    super.initState();
-  }
+  int dropdownIndex = 0;
+  List data = [
+    const room1(),
+    const room2(),
+    const room3(),
+    const room4(),
+  ];
 
   //!Body
   @override
@@ -49,7 +26,7 @@ class _dashboardState extends State<dashboard> {
       body: Column(
         children: [
           Container(
-            width: 414,
+            width: double.infinity,
             height: 363,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -277,9 +254,6 @@ class _dashboardState extends State<dashboard> {
               ),
             ),
           ),
-          // SizedBox(
-          //   height: 19,
-          // ),
           //!Scrollview
           Expanded(
             child: SingleChildScrollView(
@@ -287,386 +261,58 @@ class _dashboardState extends State<dashboard> {
                 padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: Column(
                   children: [
-                    //!Chart Room 1
-                    Card(
-                      child: Container(
-                        width: double.infinity,
-                        height: 327,
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Room 1',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset('assets/images/divider.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Suhu',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset('assets/images/divider1.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Kelembapan',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //*Ini Kodingan Chartnya
-                            chart.SfCartesianChart(
-                              series: <chart.LineSeries<LiveData, int>>[
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController = controller;
-                                    },
-                                    dataSource: chartData,
-                                    color: Colors.blue,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController2 = controller;
-                                    },
-                                    dataSource: chartData2,
-                                    color: Colors.red,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                              ],
-                              primaryXAxis: chart.NumericAxis(
-                                  majorGridLines:
-                                      const chart.MajorGridLines(width: 0),
-                                  edgeLabelPlacement:
-                                      chart.EdgeLabelPlacement.shift,
-                                  interval: 1,
-                                  title:
-                                      chart.AxisTitle(text: 'time(seconds)')),
-                              primaryYAxis: chart.NumericAxis(
-                                axisLine: const chart.AxisLine(width: 0),
-                                majorTickLines:
-                                    const chart.MajorTickLines(size: 0),
-                              ),
-                            ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 90),
+                      child: Card(
+                        child: DropdownSearch<dynamic>(
+                          popupProps: const PopupProps.menu(
+                            fit: FlexFit.loose,
+                          ),
+                          items: const [
+                            "Room chart 1",
+                            "Room chart 2",
+                            "Room chart 3",
+                            "Room chart 4"
                           ],
+                          dropdownDecoratorProps: const DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
+                              labelText: "Pilih Room",
+                            ),
+                          ),
+                          onChanged: (o) {
+                            setState(() {
+                              switch (o) {
+                                case "Room chart 1":
+                                  dropdownIndex = 0;
+                                  break;
+                                case "Room chart 2":
+                                  dropdownIndex = 1;
+                                  break;
+                                case "Room chart 3":
+                                  dropdownIndex = 2;
+                                  break;
+                                case "Room chart 4":
+                                  dropdownIndex = 3;
+                                  break;
+                                default:
+                                  dropdownIndex = 0;
+                                  break;
+                              }
+                            });
+                          },
+                          selectedItem: data[dropdownIndex],
                         ),
                       ),
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
-                    //*Chart Room 2
-                    Card(
-                      child: Container(
-                        width: double.infinity,
-                        height: 327,
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Room 2',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset('assets/images/divider.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Suhu',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset('assets/images/divider1.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Kelembapan',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //!Ini Kodingan Chartnya
-                            chart.SfCartesianChart(
-                              series: <chart.LineSeries<LiveData, int>>[
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController3 = controller;
-                                    },
-                                    dataSource: chartData3,
-                                    color: Colors.blue,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController4 = controller;
-                                    },
-                                    dataSource: chartData4,
-                                    color: Colors.red,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                              ],
-                              primaryXAxis: chart.NumericAxis(
-                                  majorGridLines:
-                                      const chart.MajorGridLines(width: 0),
-                                  edgeLabelPlacement:
-                                      chart.EdgeLabelPlacement.shift,
-                                  interval: 1,
-                                  title:
-                                      chart.AxisTitle(text: 'time(seconds)')),
-                              primaryYAxis: chart.NumericAxis(
-                                axisLine: const chart.AxisLine(width: 0),
-                                majorTickLines:
-                                    const chart.MajorTickLines(size: 0),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    //*Chart Room 3
-                    Card(
-                      child: Container(
-                        width: double.infinity,
-                        height: 327,
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Room 3',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset('assets/images/divider.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Suhu',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset('assets/images/divider1.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Kelembapan',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //!Ini kodingan chartnya
-                            chart.SfCartesianChart(
-                              series: <chart.LineSeries<LiveData, int>>[
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController5 = controller;
-                                    },
-                                    dataSource: chartData5,
-                                    color: Colors.blue,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController6 = controller;
-                                    },
-                                    dataSource: chartData6,
-                                    color: Colors.red,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                              ],
-                              primaryXAxis: chart.NumericAxis(
-                                  majorGridLines:
-                                      const chart.MajorGridLines(width: 0),
-                                  edgeLabelPlacement:
-                                      chart.EdgeLabelPlacement.shift,
-                                  interval: 1,
-                                  title:
-                                      chart.AxisTitle(text: 'time(seconds)')),
-                              primaryYAxis: chart.NumericAxis(
-                                axisLine: const chart.AxisLine(width: 0),
-                                majorTickLines:
-                                    const chart.MajorTickLines(size: 0),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    //*chart room 4
-                    Card(
-                      child: Container(
-                        width: double.infinity,
-                        height: 327,
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Room 4',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset('assets/images/divider.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Suhu',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset('assets/images/divider1.png'),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Kelembapan',
-                                    style: meTextStyle.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            //!Ini kodingan chartnya
-                            chart.SfCartesianChart(
-                              series: <chart.LineSeries<LiveData, int>>[
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController7 = controller;
-                                    },
-                                    dataSource: chartData7,
-                                    color: Colors.blue,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                                chart.LineSeries<LiveData, int>(
-                                    onRendererCreated:
-                                        (chart.ChartSeriesController
-                                            controller) {
-                                      _chartSeriesController8 = controller;
-                                    },
-                                    dataSource: chartData8,
-                                    color: Colors.red,
-                                    xValueMapper: (LiveData sales, _) =>
-                                        sales.time,
-                                    yValueMapper: (LiveData sales, _) =>
-                                        sales.speed),
-                              ],
-                              primaryXAxis: chart.NumericAxis(
-                                  majorGridLines:
-                                      const chart.MajorGridLines(width: 0),
-                                  edgeLabelPlacement:
-                                      chart.EdgeLabelPlacement.shift,
-                                  interval: 1,
-                                  title:
-                                      chart.AxisTitle(text: 'time(seconds)')),
-                              primaryYAxis: chart.NumericAxis(
-                                axisLine: const chart.AxisLine(width: 0),
-                                majorTickLines:
-                                    const chart.MajorTickLines(size: 0),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    )
+                    data[dropdownIndex],
                   ],
                 ),
               ),
@@ -676,289 +322,4 @@ class _dashboardState extends State<dashboard> {
       ),
     );
   }
-
-  //!Ini buat timer line grafik chartnya
-  int time = 19;
-  void updateDataSource(Timer timer) {
-    chartData.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData.removeAt(0);
-    _chartSeriesController.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData2.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData2.removeAt(0);
-    _chartSeriesController2.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData3.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData3.removeAt(0);
-    _chartSeriesController3.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData4.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData4.removeAt(0);
-    _chartSeriesController4.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData5.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData5.removeAt(0);
-    _chartSeriesController5.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData6.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData6.removeAt(0);
-    _chartSeriesController6.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData7.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData7.removeAt(0);
-    _chartSeriesController7.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-    chartData8.add(LiveData(time++, (math.Random().nextInt(60) + 30)));
-    chartData8.removeAt(0);
-    _chartSeriesController8.updateDataSource(
-        addedDataIndex: chartData.length - 1, removedDataIndex: 0);
-  }
-
-  //!Ini buat data yang diambil chartnya
-  List<LiveData> getChartData() {
-    return <LiveData>[
-      LiveData(0, 42),
-      LiveData(1, 47),
-      LiveData(2, 43),
-      LiveData(3, 49),
-      LiveData(4, 54),
-      LiveData(5, 41),
-      LiveData(6, 58),
-      LiveData(7, 51),
-      LiveData(8, 98),
-      LiveData(9, 41),
-      LiveData(10, 53),
-      LiveData(11, 72),
-      LiveData(12, 86),
-      LiveData(13, 52),
-      LiveData(14, 94),
-      LiveData(15, 92),
-      LiveData(16, 86),
-      LiveData(17, 72),
-      LiveData(18, 94),
-    ];
-  }
-
-  List<LiveData> getChartData2() {
-    return <LiveData>[
-      LiveData(0, 41),
-      LiveData(1, 45),
-      LiveData(2, 46),
-      LiveData(3, 47),
-      LiveData(4, 31),
-      LiveData(5, 32),
-      LiveData(6, 34),
-      LiveData(7, 30),
-      LiveData(8, 30),
-      LiveData(9, 50),
-      LiveData(10, 51),
-      LiveData(11, 53),
-      LiveData(12, 56),
-      LiveData(13, 44),
-      LiveData(14, 46),
-      LiveData(15, 92),
-      LiveData(16, 95),
-      LiveData(17, 78),
-      LiveData(18, 60),
-    ];
-  }
-
-  //!Ini buat data yang diambil chartnya
-  List<LiveData> getChartData3() {
-    return <LiveData>[
-      LiveData(0, 42),
-      LiveData(1, 47),
-      LiveData(2, 43),
-      LiveData(3, 49),
-      LiveData(4, 54),
-      LiveData(5, 41),
-      LiveData(6, 58),
-      LiveData(7, 51),
-      LiveData(8, 98),
-      LiveData(9, 41),
-      LiveData(10, 53),
-      LiveData(11, 72),
-      LiveData(12, 86),
-      LiveData(13, 52),
-      LiveData(14, 94),
-      LiveData(15, 92),
-      LiveData(16, 86),
-      LiveData(17, 72),
-      LiveData(18, 94),
-    ];
-  }
-
-  List<LiveData> getChartData4() {
-    return <LiveData>[
-      LiveData(0, 41),
-      LiveData(1, 45),
-      LiveData(2, 46),
-      LiveData(3, 47),
-      LiveData(4, 31),
-      LiveData(5, 32),
-      LiveData(6, 34),
-      LiveData(7, 30),
-      LiveData(8, 30),
-      LiveData(9, 50),
-      LiveData(10, 51),
-      LiveData(11, 53),
-      LiveData(12, 56),
-      LiveData(13, 44),
-      LiveData(14, 46),
-      LiveData(15, 92),
-      LiveData(16, 95),
-      LiveData(17, 78),
-      LiveData(18, 60),
-    ];
-  }
-
-  //!Ini buat data yang diambil chartnya
-  List<LiveData> getChartData5() {
-    return <LiveData>[
-      LiveData(0, 42),
-      LiveData(1, 47),
-      LiveData(2, 43),
-      LiveData(3, 49),
-      LiveData(4, 54),
-      LiveData(5, 41),
-      LiveData(6, 58),
-      LiveData(7, 51),
-      LiveData(8, 98),
-      LiveData(9, 41),
-      LiveData(10, 53),
-      LiveData(11, 72),
-      LiveData(12, 86),
-      LiveData(13, 52),
-      LiveData(14, 94),
-      LiveData(15, 92),
-      LiveData(16, 86),
-      LiveData(17, 72),
-      LiveData(18, 94),
-    ];
-  }
-
-  List<LiveData> getChartData6() {
-    return <LiveData>[
-      LiveData(0, 41),
-      LiveData(1, 45),
-      LiveData(2, 46),
-      LiveData(3, 47),
-      LiveData(4, 31),
-      LiveData(5, 32),
-      LiveData(6, 34),
-      LiveData(7, 30),
-      LiveData(8, 30),
-      LiveData(9, 50),
-      LiveData(10, 51),
-      LiveData(11, 53),
-      LiveData(12, 56),
-      LiveData(13, 44),
-      LiveData(14, 46),
-      LiveData(15, 92),
-      LiveData(16, 95),
-      LiveData(17, 78),
-      LiveData(18, 60),
-    ];
-  }
-
-  //!Ini buat data yang diambil chartnya
-  List<LiveData> getChartData7() {
-    return <LiveData>[
-      LiveData(0, 42),
-      LiveData(1, 47),
-      LiveData(2, 43),
-      LiveData(3, 49),
-      LiveData(4, 54),
-      LiveData(5, 41),
-      LiveData(6, 58),
-      LiveData(7, 51),
-      LiveData(8, 98),
-      LiveData(9, 41),
-      LiveData(10, 53),
-      LiveData(11, 72),
-      LiveData(12, 86),
-      LiveData(13, 52),
-      LiveData(14, 94),
-      LiveData(15, 92),
-      LiveData(16, 86),
-      LiveData(17, 72),
-      LiveData(18, 94),
-    ];
-  }
-
-  List<LiveData> getChartData8() {
-    return <LiveData>[
-      LiveData(0, 41),
-      LiveData(1, 45),
-      LiveData(2, 46),
-      LiveData(3, 47),
-      LiveData(4, 31),
-      LiveData(5, 32),
-      LiveData(6, 34),
-      LiveData(7, 30),
-      LiveData(8, 30),
-      LiveData(9, 50),
-      LiveData(10, 51),
-      LiveData(11, 53),
-      LiveData(12, 56),
-      LiveData(13, 44),
-      LiveData(14, 46),
-      LiveData(15, 92),
-      LiveData(16, 95),
-      LiveData(17, 78),
-      LiveData(18, 60),
-    ];
-  }
-}
-
-//!Ini buat pemanggilan class Livedatanya
-class LiveData {
-  LiveData(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-class LiveData2 {
-  LiveData2(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-//!Ini buat pemanggilan class Livedatanya
-class LiveData3 {
-  LiveData3(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-class LiveData4 {
-  LiveData4(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-//!Ini buat pemanggilan class Livedatanya
-class LiveData5 {
-  LiveData5(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-class LiveData6 {
-  LiveData6(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-//!Ini buat pemanggilan class Livedatanya
-class LiveData7 {
-  LiveData7(this.time, this.speed);
-  final int time;
-  final num speed;
-}
-
-class LiveData8 {
-  LiveData8(this.time, this.speed);
-  final int time;
-  final num speed;
 }
