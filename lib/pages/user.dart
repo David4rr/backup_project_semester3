@@ -90,6 +90,14 @@ class _userPageState extends State<userPage> {
                             Icon(Icons.arrow_forward_ios_outlined),
                           ],
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const mapPage(),
+                            ),
+                          );
+                        },
                       ),
                       const Divider(color: Colors.black26),
                       ListTile(

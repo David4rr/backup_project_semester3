@@ -169,19 +169,6 @@ class _selamatdatangState extends State<selamatdatang> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
-                                                hintText: "Username",
-                                                labelText: "Username",
-                                              )),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-
-                                              TextField(
-                                                  decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
                                                 hintText: "Email",
                                                 labelText: "Email",
                                               )),
