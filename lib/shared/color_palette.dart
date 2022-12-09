@@ -2,7 +2,7 @@ part of 'shared.dart';
 
 class Colorpalette {
   static const MaterialColor purpleColor =
-      const MaterialColor(0xFF050522, const <int, Color>{
+      MaterialColor(0xFF050522, <int, Color>{
     50: Color(0xFF05051f), //! 10%
     100: Color(0xFF04041b), //! 20%
     200: Color(0xFF040418), //! 30%

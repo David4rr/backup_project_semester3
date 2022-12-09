@@ -191,24 +191,23 @@ class _logViewState extends State<logView> with RestorationMixin {
                           ],
                           dropdownDecoratorProps: const DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20),
+                              contentPadding: EdgeInsets.all(10),
                               labelText: "Pilih Room",
                             ),
                           ),
                           onChanged: (i) {
                             setState(() {
                               switch (i) {
-                                case "Roomm chart 1":
+                                case "Room chart 1":
                                   index = 0;
                                   break;
-                                case "Roomm chart 2":
+                                case "Room chart 2":
                                   index = 1;
                                   break;
-                                case "Roomm chart 3":
+                                case "Room chart 3":
                                   index = 2;
                                   break;
-                                case "Roomm chart 4":
+                                case "Room chart 4":
                                   index = 3;
                                   break;
                                 default:

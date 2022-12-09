@@ -57,7 +57,7 @@ class _profilPageState extends State<profilPage> {
             margin: EdgeInsets.all(8),
             child: ListTile(
               contentPadding: EdgeInsets.all(20),
-              leading: Text("Foto Profil Saya"),
+              leading: Text("Profil Saya"),
               trailing: AvatarView(
                 radius: 30,
                 avatarType: AvatarType.CIRCLE,

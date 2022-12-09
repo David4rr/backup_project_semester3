@@ -1,9 +1,5 @@
 // import 'dart:async';
-// import 'dart:ffi';
-// import 'dart:ui';
-// import 'dart:html';
 
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mop_green/chartDashboard/chart1dash.dart';
 import 'package:mop_green/chartDashboard/chart2dash.dart';
@@ -18,7 +14,6 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:avatar_view/avatar_view.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-// import 'package:auto_size_text/auto_size_text.dart';
 
 part 'selamatdatang_pages.dart';
 part 'dashboard.dart';

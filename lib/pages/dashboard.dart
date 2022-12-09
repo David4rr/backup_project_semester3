@@ -279,8 +279,7 @@ class _dashboardState extends State<dashboard> {
                           ],
                           dropdownDecoratorProps: const DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 20),
+                              contentPadding: EdgeInsets.all(10),
                               labelText: "Pilih Room",
                             ),
                           ),
