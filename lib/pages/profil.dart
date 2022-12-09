@@ -12,11 +12,11 @@ class profilPage extends StatefulWidget {
 class _profilPageState extends State<profilPage> {
   late TextEditingController controller;
 
-  String namaDepan = '';
-  String namaBelakang = '';
-  String asalInstitusi = '';
-  String kegiatan = '';
-  String email = '';
+  var namaDepan = 'David';
+  var namaBelakang = 'Arrozaqi';
+  var asalInstitusi = 'Polijay';
+  var kegiatan = 'Pengangguran';
+  var email = 'David@gmail.com';
 
   @override
   void initState() {
@@ -93,10 +93,12 @@ class _profilPageState extends State<profilPage> {
                     ],
                   ),
                   onTap: () async {
-                    final namaDepan = await openDialog();
-                    if (namaDepan == null || namaDepan.isEmpty) return;
+                    controller.text = namaDepan;
+                    await openDialog();
+                    // final namaDepan = await openDialog();
+                    // if (namaDepan == null || namaDepan.isEmpty) return;
 
-                    setState(() => this.namaDepan = namaDepan);
+                    // setState(() => this.namaDepan = namaDepan);
                   },
                 ),
                 const Divider(
@@ -117,10 +119,12 @@ class _profilPageState extends State<profilPage> {
                     ],
                   ),
                   onTap: () async {
-                    final namaBelakang = await openDialog2();
-                    if (namaBelakang == null || namaBelakang.isEmpty) return;
+                    controller.text = namaBelakang;
+                    await openDialog2();
+                    // final namaBelakang = await openDialog2();
+                    // if (namaBelakang == null || namaBelakang.isEmpty) return;
 
-                    setState(() => this.namaBelakang = namaBelakang);
+                    // setState(() => this.namaBelakang = namaBelakang);
                   },
                 ),
                 const Divider(
@@ -142,10 +146,12 @@ class _profilPageState extends State<profilPage> {
                     ],
                   ),
                   onTap: () async {
-                    final asalInstitusi = await openDialog3();
-                    if (asalInstitusi == null || asalInstitusi.isEmpty) return;
+                    controller.text = asalInstitusi;
+                    await openDialog3();
+                    // final asalInstitusi = await openDialog3();
+                    // if (asalInstitusi == null || asalInstitusi.isEmpty) return;
 
-                    setState(() => this.asalInstitusi = asalInstitusi);
+                    // setState(() => this.asalInstitusi = asalInstitusi);
                   },
                 ),
                 const Divider(
@@ -166,10 +172,12 @@ class _profilPageState extends State<profilPage> {
                     ],
                   ),
                   onTap: () async {
-                    final kegiatan = await openDialog4();
-                    if (kegiatan == null || kegiatan.isEmpty) return;
+                    controller.text = kegiatan;
+                    await openDialog4();
+                    // final kegiatan = await openDialog4();
+                    // if (kegiatan == null || kegiatan.isEmpty) return;
 
-                    setState(() => this.kegiatan = kegiatan);
+                    // setState(() => this.kegiatan = kegiatan);
                   },
                 ),
                 const Divider(
@@ -190,10 +198,12 @@ class _profilPageState extends State<profilPage> {
                     ],
                   ),
                   onTap: () async {
-                    final email = await openDialog5();
-                    if (email == null || email.isEmpty) return;
+                    controller.text = email;
+                    await openDialog5();
+                    // final email = await openDialog5();
+                    // if (email == null || email.isEmpty) return;
 
-                    setState(() => this.email = email);
+                    // setState(() => this.email = email);
                   },
                 ),
               ],
@@ -220,6 +230,7 @@ class _profilPageState extends State<profilPage> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      controller.text = "";
                       Navigator.pop(context);
                     });
                   },
@@ -234,9 +245,13 @@ class _profilPageState extends State<profilPage> {
             ],
           ));
   void submit() {
-    Navigator.of(context).pop(controller.text);
+    // controller.text = "";
+    setState(() {
+      namaDepan = controller.text;
+    });
+    Navigator.of(context).pop();
 
-    controller.clear();
+    // controller.clear();
   }
 
   Future<String?> openDialog2() => showDialog<String>(
@@ -255,19 +270,28 @@ class _profilPageState extends State<profilPage> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      controller.text = "";
                       Navigator.pop(context);
                     });
                   },
                   child: const Text('Batal',
                       style: TextStyle(color: Colors.grey, fontSize: 14))),
               TextButton(
-                  onPressed: submit,
+                  onPressed: submit2,
                   child: Text(
                     "Tentukan",
                     style: buttonStyle.copyWith(fontSize: 14),
                   )),
             ],
           ));
+  void submit2() {
+    setState(() {
+      namaBelakang = controller.text;
+    });
+    Navigator.of(context).pop();
+
+    // controller.clear();
+  }
 
   Future<String?> openDialog3() => showDialog<String>(
       context: context,
@@ -285,19 +309,30 @@ class _profilPageState extends State<profilPage> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      controller.text = "";
                       Navigator.pop(context);
                     });
                   },
                   child: const Text('Batal',
                       style: TextStyle(color: Colors.grey, fontSize: 14))),
               TextButton(
-                  onPressed: submit,
+                  onPressed: submit3,
                   child: Text(
                     "Tentukan",
                     style: buttonStyle.copyWith(fontSize: 14),
                   )),
             ],
           ));
+  void submit3() {
+    // controller.text = "";
+    setState(() {
+      asalInstitusi = controller.text;
+    });
+    Navigator.of(context).pop();
+
+    // controller.clear();
+  }
+
   Future<String?> openDialog4() => showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
@@ -314,19 +349,30 @@ class _profilPageState extends State<profilPage> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      controller.text = "";
                       Navigator.pop(context);
                     });
                   },
                   child: const Text('Batal',
                       style: TextStyle(color: Colors.grey, fontSize: 14))),
               TextButton(
-                  onPressed: submit,
+                  onPressed: submit4,
                   child: Text(
                     "Tentukan",
                     style: buttonStyle.copyWith(fontSize: 14),
                   )),
             ],
           ));
+  void submit4() {
+    // controller.text = "";
+    setState(() {
+      kegiatan = controller.text;
+    });
+    Navigator.of(context).pop();
+
+    // controller.clear();
+  }
+
   Future<String?> openDialog5() => showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
@@ -342,17 +388,27 @@ class _profilPageState extends State<profilPage> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      controller.text = "";
                       Navigator.pop(context);
                     });
                   },
                   child: const Text('Batal',
                       style: TextStyle(color: Colors.grey, fontSize: 14))),
               TextButton(
-                  onPressed: submit,
+                  onPressed: submit5,
                   child: Text(
                     "Tentukan",
                     style: buttonStyle.copyWith(fontSize: 14),
                   )),
             ],
           ));
+  void submit5() {
+    // controller.text = "";
+    setState(() {
+      email = controller.text;
+    });
+    Navigator.of(context).pop();
+
+    // controller.clear();
+  }
 }

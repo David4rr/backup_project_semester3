@@ -184,10 +184,10 @@ class _logViewState extends State<logView> with RestorationMixin {
                             fit: FlexFit.loose,
                           ),
                           items: const [
-                            "Roomm chart 1",
-                            "Roomm chart 2",
-                            "Roomm chart 3",
-                            "Roomm chart 4"
+                            "Room chart 1",
+                            "Room chart 2",
+                            "Room chart 3",
+                            "Room chart 4"
                           ],
                           dropdownDecoratorProps: const DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
