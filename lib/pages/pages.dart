@@ -14,6 +14,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:avatar_view/avatar_view.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:mop_green/modal/modal.dart';
 
 part 'selamatdatang_pages.dart';
 part 'dashboard.dart';
