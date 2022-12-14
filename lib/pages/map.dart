@@ -25,6 +25,7 @@ class mapPage extends StatelessWidget {
         ),
       ),
       body: Container(
+        width: double.infinity,
         child: Image.asset(''),
       ),
     );

@@ -54,7 +54,7 @@ class _selamatdatangState extends State<selamatdatang> {
                 child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
-                          isDismissible: false,
+                          isDismissible: true,
                           isScrollControlled: true,
                           context: context,
                           builder: (_) {
@@ -81,7 +81,7 @@ class _selamatdatangState extends State<selamatdatang> {
                 child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
-                          isDismissible: false,
+                          isDismissible: true,
                           isScrollControlled: true,
                           context: context,
                           builder: (_) {

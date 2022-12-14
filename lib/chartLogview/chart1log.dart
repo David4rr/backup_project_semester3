@@ -7,14 +7,14 @@ import 'package:syncfusion_flutter_charts/charts.dart' as chart;
 import 'dart:math' as math;
 import 'package:mop_green/shared/shared.dart';
 
-class myroom1 extends StatefulWidget {
-  const myroom1({Key? key}) : super(key: key);
+class logroom1 extends StatefulWidget {
+  const logroom1({Key? key}) : super(key: key);
 
   @override
-  State<myroom1> createState() => _myroom1State();
+  State<logroom1> createState() => _logroom1State();
 }
 
-class _myroom1State extends State<myroom1> {
+class _logroom1State extends State<logroom1> {
   late List<LiveData> chartData;
   late List<LiveData> chartData1;
   late chart.ChartSeriesController _chartSeriesController;

@@ -110,11 +110,7 @@ class _bottomSheetLoginState extends State<bottomSheetLogin> {
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(children: const [Text("Forgot Password ?")]),
 
-                  const SizedBox(
-                    height: 15,
-                  ),
                   SizedBox(
                       height: 60,
                       width:
@@ -148,9 +144,20 @@ class _bottomSheetLoginState extends State<bottomSheetLogin> {
                     children: [
                       Text("Belum punya Akun? ",
                           style: deskripsiTextStyle.copyWith(fontSize: 14)),
-                      Text("Registrasi",
-                          style: deskripsiTextStyle.copyWith(
-                              color: primaryColor, fontSize: 14))
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            showModalBottomSheet(
+                                isDismissible: true,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (_) {
+                                  return const BottomSheetRegister();
+                                });
+                          },
+                          child: Text("Registrasi",
+                              style: deskripsiTextStyle.copyWith(
+                                  color: primaryColor, fontSize: 14)))
                     ],
                   ),
                   SizedBox(

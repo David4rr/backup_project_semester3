@@ -30,11 +30,6 @@ class _BottomSheetRegisterState extends State<BottomSheetRegister> {
                     topLeft: Radius.circular(40))),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: defaultmargin),
-              // margin: EdgeInsets.symmetric(
-              //     horizontal: defaultmargin),
-              // child: Padding(
-              //   padding:
-              //       EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -209,9 +204,30 @@ class _BottomSheetRegisterState extends State<BottomSheetRegister> {
                     children: [
                       Text("Sudah punya Akun? ",
                           style: deskripsiTextStyle.copyWith(fontSize: 14)),
-                      Text("Login",
-                          style: deskripsiTextStyle.copyWith(
-                              color: primaryColor, fontSize: 14))
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            showModalBottomSheet(
+                                isDismissible: true,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (_) {
+                                  return const bottomSheetLogin();
+                                });
+                            // Navigator.pushReplacement(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const bottomSheetLogin(),
+                            //   ),
+                            // );
+                            //   Navigator.of(context).pop();
+                            //   setState(() {
+                            //     const bottomSheetLogin();
+                            //   });
+                          },
+                          child: Text("Login",
+                              style: deskripsiTextStyle.copyWith(
+                                  color: primaryColor, fontSize: 14)))
                     ],
                   ),
                   SizedBox(

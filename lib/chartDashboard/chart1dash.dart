@@ -42,7 +42,7 @@ class _room1State extends State<room1> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Room 1',
+                    'Room',
                     style: meTextStyle.copyWith(
                       color: Colors.black,
                     ),

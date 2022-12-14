@@ -10,13 +10,13 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
-  int dropdownIndex = 0;
-  List data = [
-    const room1(),
-    const room2(),
-    const room3(),
-    const room4(),
-  ];
+  // int dropdownIndex = 0;
+  // List data = [
+  //   const room1(),
+  // const room2(),
+  // const room3(),
+  // const room4(),
+  // ];
 
   //!Body
   @override
@@ -257,61 +257,64 @@ class _dashboardState extends State<dashboard> {
           //!Scrollview
           Expanded(
             child: SingleChildScrollView(
+              // scrollDirection: Axis.vertical,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+                  children: const [
+                    SizedBox(
+                      height: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 90),
-                      child: Card(
-                        child: DropdownSearch<dynamic>(
-                          popupProps: const PopupProps.menu(
-                            fit: FlexFit.loose,
-                          ),
-                          items: const [
-                            "Room chart 1",
-                            "Room chart 2",
-                            "Room chart 3",
-                            "Room chart 4"
-                          ],
-                          dropdownDecoratorProps: const DropDownDecoratorProps(
-                            dropdownSearchDecoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(10),
-                              labelText: "Pilih Room",
-                            ),
-                          ),
-                          onChanged: (o) {
-                            setState(() {
-                              switch (o) {
-                                case "Room chart 1":
-                                  dropdownIndex = 0;
-                                  break;
-                                case "Room chart 2":
-                                  dropdownIndex = 1;
-                                  break;
-                                case "Room chart 3":
-                                  dropdownIndex = 2;
-                                  break;
-                                case "Room chart 4":
-                                  dropdownIndex = 3;
-                                  break;
-                                default:
-                                  dropdownIndex = 0;
-                                  break;
-                              }
-                            });
-                          },
-                          selectedItem: data[dropdownIndex],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    data[dropdownIndex],
+                    room1()
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 90),
+                    //   child: Card(
+                    //     child: DropdownSearch<dynamic>(
+                    //       popupProps: const PopupProps.menu(
+                    //         fit: FlexFit.loose,
+                    //       ),
+                    //       items: const [
+                    //         "room1",
+                    //         // "room2", "room3", "room4"
+                    //       ],
+                    //       dropdownDecoratorProps: const DropDownDecoratorProps(
+                    //         dropdownSearchDecoration: InputDecoration(
+                    //           contentPadding: EdgeInsets.all(10),
+                    //           labelText: "Pilih Room",
+                    //         ),
+                    //       ),
+                    //       onChanged: (o) {
+                    //         setState(() {
+                    //           switch (o) {
+                    //             case "room1":
+                    //               dropdownIndex = 0;
+                    //               break;
+                    //             case "room2":
+                    //               dropdownIndex = 1;
+                    //               break;
+                    //             case "room3":
+                    //               dropdownIndex = 2;
+                    //               break;
+                    //             case "room4":
+                    //               dropdownIndex = 3;
+                    //               break;
+                    //             default:
+                    //               dropdownIndex = 0;
+                    //               break;
+                    //           }
+                    //         });
+                    //       },
+                    //       selectedItem: data[dropdownIndex],
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    // data[dropdownIndex],
                   ],
                 ),
               ),

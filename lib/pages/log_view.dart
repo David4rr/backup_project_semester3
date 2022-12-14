@@ -83,13 +83,13 @@ class _logViewState extends State<logView> with RestorationMixin {
     "1 bulan lalu",
   ];
 
-  int index = 0;
-  List dataa = [
-    const myroom1(),
-    const logroom2(),
-    const logroom3(),
-    const logroom4(),
-  ];
+  // int index = 0;
+  // List dataa = [
+  //   const logroom1(),
+  //   const logroom2(),
+  //   const logroom3(),
+  //   const logroom4(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _logViewState extends State<logView> with RestorationMixin {
       body: Column(
         children: [
           Container(
-            width: 414,
+            width: double.infinity,
             height: 224,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -172,58 +172,62 @@ class _logViewState extends State<logView> with RestorationMixin {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+                  children: const [
+                    SizedBox(
+                      height: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 90),
-                      child: Card(
-                        child: DropdownSearch<dynamic>(
-                          popupProps: const PopupProps.menu(
-                            fit: FlexFit.loose,
-                          ),
-                          items: const [
-                            "Room chart 1",
-                            "Room chart 2",
-                            "Room chart 3",
-                            "Room chart 4"
-                          ],
-                          dropdownDecoratorProps: const DropDownDecoratorProps(
-                            dropdownSearchDecoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(10),
-                              labelText: "Pilih Room",
-                            ),
-                          ),
-                          onChanged: (i) {
-                            setState(() {
-                              switch (i) {
-                                case "Room chart 1":
-                                  index = 0;
-                                  break;
-                                case "Room chart 2":
-                                  index = 1;
-                                  break;
-                                case "Room chart 3":
-                                  index = 2;
-                                  break;
-                                case "Room chart 4":
-                                  index = 3;
-                                  break;
-                                default:
-                                  index = 0;
-                                  break;
-                              }
-                            });
-                          },
-                          selectedItem: dataa[index],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    dataa[index],
+                    logroom1()
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 90),
+                    //   child: Card(
+                    //     child: DropdownSearch<dynamic>(
+                    //       popupProps: const PopupProps.menu(
+                    //         fit: FlexFit.loose,
+                    //       ),
+                    //       items: const [
+                    //         "logroom1",
+                    //         "logroom2",
+                    //         "logroom3",
+                    //         "logroom4"
+                    //       ],
+                    //       dropdownDecoratorProps: const DropDownDecoratorProps(
+                    //         dropdownSearchDecoration: InputDecoration(
+                    //           contentPadding: EdgeInsets.all(10),
+                    //           labelText: "Pilih Room",
+                    //         ),
+                    //       ),
+                    //       onChanged: (i) {
+                    //         setState(() {
+                    //           switch (i) {
+                    //             case "logroom1":
+                    //               index = 0;
+                    //               break;
+                    //             case "logroom2":
+                    //               index = 1;
+                    //               break;
+                    //             case "logroom3":
+                    //               index = 2;
+                    //               break;
+                    //             case "logroom4":
+                    //               index = 3;
+                    //               break;
+                    //             default:
+                    //               index = 0;
+                    //               break;
+                    //           }
+                    //         });
+                    //       },
+                    //       selectedItem: dataa[index],
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    // dataa[index],
                   ],
                 ),
               ),

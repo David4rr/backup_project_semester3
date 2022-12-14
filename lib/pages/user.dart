@@ -99,7 +99,7 @@ class _userPageState extends State<userPage> {
                           );
                         },
                       ),
-                      const Divider(color: Colors.black26),
+                      const Divider(height: 3, color: Colors.black26),
                       ListTile(
                         dense: true,
                         leading: const Icon(
