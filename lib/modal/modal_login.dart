@@ -10,7 +10,7 @@ class bottomSheetLogin extends StatefulWidget {
 
 class _bottomSheetLoginState extends State<bottomSheetLogin> {
   bool _isHiddenPassword = true;
-  // final bool _isHiddenConfrimPassword = true;
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -31,9 +31,6 @@ class _bottomSheetLoginState extends State<bottomSheetLogin> {
                     topLeft: Radius.circular(40))),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: defaultmargin),
-              // child: Padding(
-              //   padding:
-              //       EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -81,34 +78,35 @@ class _bottomSheetLoginState extends State<bottomSheetLogin> {
                     labelText: "Username",
                   )),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
 
                   Padding(
                     padding: EdgeInsets.only(
                         bottom: mediaQueryData.viewInsets.bottom),
                     child: TextField(
-                        obscureText: _isHiddenPassword,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Password",
-                          labelText: "Password",
-                          suffixIcon: IconButton(
-                              icon: Icon(_isHiddenPassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                              onPressed: () {
-                                setState(() {
-                                  _isHiddenPassword = !_isHiddenPassword;
-                                });
-                              }),
-                        )),
+                      obscureText: _isHiddenPassword,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        hintText: "Password",
+                        labelText: "Password",
+                        suffixIcon: IconButton(
+                            icon: Icon(_isHiddenPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              setState(() {
+                                _isHiddenPassword = !_isHiddenPassword;
+                              });
+                            }),
+                      ),
+                    ),
                   ),
 
                   const SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
 
                   SizedBox(
