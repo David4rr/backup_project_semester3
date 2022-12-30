@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_print
 
 part of 'pages.dart';
 
@@ -10,6 +10,41 @@ class userPage extends StatefulWidget {
 }
 
 class _userPageState extends State<userPage> {
+  var id = '';
+  var namaDepan = '';
+  var namaBelakang = '';
+  var asalInstitusi = '';
+  var kegiatan = '';
+  var email = '';
+  String namaLengkap = '';
+
+  late SharedPreferences s_prefs;
+  var datauser = '';
+
+  void _showSavedValue() async {
+    s_prefs = await SharedPreferences.getInstance();
+    setState(() {
+      datauser = s_prefs.getString("KEY_1").toString();
+      // print(datauser);
+      id = (jsonDecode(datauser)['id']).toString();
+      namaDepan = (jsonDecode(datauser)['nama_depan']).toString();
+      namaBelakang = (jsonDecode(datauser)['nama_belakang']).toString();
+      asalInstitusi = (jsonDecode(datauser)['asal_institusi']).toString();
+      kegiatan = (jsonDecode(datauser)['kegiatan']).toString();
+      email = (jsonDecode(datauser)['email']).toString();
+      print(datauser);
+      namaLengkap = '$namaDepan $namaBelakang';
+      print(namaLengkap);
+    });
+  }
+
+  @override
+  void initState() {
+    _showSavedValue();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -49,7 +84,7 @@ class _userPageState extends State<userPage> {
                     ),
                   ),
                   title: Text(
-                    "David Arrozaqi",
+                    namaLengkap,
                     style: wikwokTextStyle.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
@@ -79,7 +114,7 @@ class _userPageState extends State<userPage> {
                             size: 35,
                           ),
                           title: const Text(
-                            "Map Greenhouse",
+                            "Peta Greenhouse",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           // subtitle: Text("Ketuk Untuk Membuka"),
@@ -109,7 +144,7 @@ class _userPageState extends State<userPage> {
                             size: 35,
                           ),
                           title: const Text(
-                            "About Us",
+                            "Tentang Kami",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           trailing: Row(
@@ -142,7 +177,7 @@ class _userPageState extends State<userPage> {
                         size: 35,
                       ),
                       title: const Text(
-                        "Hapus Account",
+                        "Hapus Akun",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -163,7 +198,7 @@ class _userPageState extends State<userPage> {
                         size: 35,
                       ),
                       title: const Text(
-                        "Log Out",
+                        "Keluar",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
@@ -230,6 +265,7 @@ class _userPageState extends State<userPage> {
                       style: TextStyle(color: Colors.grey, fontSize: 14))),
               TextButton(
                   onPressed: () {
+                    delrecord(id);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -274,4 +310,20 @@ class _userPageState extends State<userPage> {
                   )),
             ],
           ));
+  Future<void> delrecord(String id) async {
+    print(id);
+    try {
+      var data = {"id": id};
+      String uri = "http://mopgreen.my.id/apiapideluser.php";
+      var res = await http.post(Uri.parse(uri), body: json.encode(data));
+      var response = jsonDecode(res.body);
+      if (response["success"] == true) {
+        print("data berhasil dihapus");
+      } else {
+        print("Terjadi kendala silakan ulangi!");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 }

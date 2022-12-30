@@ -31,12 +31,16 @@ dependencies:
   convex_bottom_bar: ^3.1.0+1
   cupertino_icons: ^1.0.2
   dropdown_search: ^5.0.3
-  flutter:
-    sdk: flutter
+  flutter_form_builder: ^7.7.0
   google_fonts: ^3.0.1
+  http: ^0.13.5
   intl: ^0.17.0
+  mqtt_client: ^9.6.1
+  shared_preferences: ^2.0.15
   syncfusion_flutter_charts: ^20.3.57
   syncfusion_flutter_gauges: ^20.3.57
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
   flutter_lints: ^2.0.0

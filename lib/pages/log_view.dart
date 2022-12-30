@@ -3,78 +3,80 @@
 part of 'pages.dart';
 
 class logView extends StatefulWidget {
-  const logView({super.key, this.restorationId});
+  const logView({Key? key}) : super(key: key);
 
-  final String? restorationId;
+  // final String? restorationId;
 
   @override
   State<logView> createState() => _logViewState();
 }
 
-class _logViewState extends State<logView> with RestorationMixin {
-  @override
-  String? get restorationId => widget.restorationId;
+class _logViewState extends State<logView> {
+  final _formKey = GlobalKey<FormBuilderState>();
+  void _onChanged(dynamic val) => debugPrint(val.toString());
+//   @override
+//   String? get restorationId => widget.restorationId;
 
-  final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now());
-  final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
-  late final RestorableRouteFuture<DateTimeRange?> _rangePicker =
-      RestorableRouteFuture<DateTimeRange?>(
-    onComplete: _selectDateRange,
-    onPresent: (NavigatorState navigator, Object? arguments) {
-      return navigator
-          .restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
-        'intialStartDate': _startDate.value?.millisecondsSinceEpoch,
-        'IntialEndDate': _endDate.value?.millisecondsSinceEpoch,
-      });
-    },
-  );
+  // final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime.now());
+  // final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
+  // late final RestorableRouteFuture<DateTimeRange?> _rangePicker =
+  //     RestorableRouteFuture<DateTimeRange?>(
+  //   onComplete: _selectDateRange,
+  //   onPresent: (NavigatorState navigator, Object? arguments) {
+  //     return navigator
+  //         .restorablePush(_dateRangePickerRoute, arguments: <String, dynamic>{
+  //       'intialStartDate': _startDate.value?.millisecondsSinceEpoch,
+  //       'IntialEndDate': _endDate.value?.millisecondsSinceEpoch,
+  //     });
+  //   },
+  // );
 
-  void _selectDateRange(DateTimeRange? newSelectedDate) {
-    if (newSelectedDate != null) {
-      setState(() {
-        _startDate.value = newSelectedDate.start;
-        _endDate.value = newSelectedDate.end;
-      });
-    }
-  }
+  // void _selectDateRange(DateTimeRange? newSelectedDate) {
+  //   if (newSelectedDate != null) {
+  //     setState(() {
+  //       _startDate.value = newSelectedDate.start;
+  //       _endDate.value = newSelectedDate.end;
+  //     });
+  //   }
+  // }
 
-  @override
-  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    registerForRestoration(_startDate, 'start_date');
-    registerForRestoration(_endDate, 'end_date');
-    registerForRestoration(_rangePicker, 'date_picker_route_future');
-  }
+  // @override
+  // void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+  //   registerForRestoration(_startDate, 'start_date');
+  //   registerForRestoration(_endDate, 'end_date');
+  //   registerForRestoration(_rangePicker, 'date_picker_route_future');
+  // }
 
-  static Route<DateTimeRange?> _dateRangePickerRoute(
-    BuildContext context,
-    Object? arguments,
-  ) {
-    return DialogRoute<DateTimeRange?>(
-      context: context,
-      builder: (BuildContext context) {
-        return DateRangePickerDialog(
-          restorationId: 'date_picker_dialog',
-          initialDateRange:
-              _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2023),
-        );
-      },
-    );
-  }
+  // static Route<DateTimeRange?> _dateRangePickerRoute(
+  //   BuildContext context,
+  //   Object? arguments,
+  // ) {
+  //   return DialogRoute<DateTimeRange?>(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return DateRangePickerDialog(
+  //         restorationId: 'date_picker_dialog',
+  //         initialDateRange:
+  //             _initialDateTimeRange(arguments! as Map<dynamic, dynamic>),
+  //         firstDate: DateTime(2000),
+  //         lastDate: DateTime(2023),
+  //       );
+  //     },
+  //   );
+  // }
 
-  static DateTimeRange? _initialDateTimeRange(Map<dynamic, dynamic> arguments) {
-    if (arguments['intialStartDate'] != null &&
-        arguments['intialEndDate'] != null) {
-      return DateTimeRange(
-        start: DateTime.fromMillisecondsSinceEpoch(
-            arguments['initialStartDate'] as int),
-        end: DateTime.fromMillisecondsSinceEpoch(
-            arguments['initialEndDate'] as int),
-      );
-    }
-    return null;
-  }
+  // static DateTimeRange? _initialDateTimeRange(Map<dynamic, dynamic> arguments) {
+  //   if (arguments['intialStartDate'] != null &&
+  //       arguments['intialEndDate'] != null) {
+  //     return DateTimeRange(
+  //       start: DateTime.fromMillisecondsSinceEpoch(
+  //           arguments['initialStartDate'] as int),
+  //       end: DateTime.fromMillisecondsSinceEpoch(
+  //           arguments['initialEndDate'] as int),
+  //     );
+  //   }
+  //   return null;
+  // }
 
   List<String> data = [
     "kemarin",
@@ -101,7 +103,7 @@ class _logViewState extends State<logView> with RestorationMixin {
           children: [
             Container(
               width: double.infinity,
-              height: 224,
+              // height: 224,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(20),
@@ -114,7 +116,6 @@ class _logViewState extends State<logView> with RestorationMixin {
               child: Container(
                 margin: const EdgeInsets.all(10),
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 30,
@@ -148,23 +149,70 @@ class _logViewState extends State<logView> with RestorationMixin {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: TextFormField(
-                        cursorColor: Colors.white,
-                        readOnly: true,
-                        onTap: () {
-                          setState(() {
-                            _rangePicker.present();
-                          });
-                        },
-                        decoration: InputDecoration(
-                          icon: const Icon(Icons.calendar_today_rounded),
-                          labelText: 'From - To',
-                          hintText: ("${_startDate.value}-${_endDate.value}"),
+                    FormBuilder(
+                      key: _formKey,
+                      onChanged: () {
+                        _formKey.currentState!.save();
+                        debugPrint(_formKey.currentState!.value.toString());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
+                        child: FormBuilderDateRangePicker(
+                          name: 'date_range',
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2023),
+                          format: DateFormat('yyyy-MM-dd'),
+                          onChanged: _onChanged,
+                          decoration: InputDecoration(
+                            labelText: 'Pilih Tanggal',
+                            // helperText: 'Helper text',
+                            hintText: 'Hint text',
+                            suffixIcon: IconButton(
+                              icon: const Icon(Icons.close),
+                              onPressed: () {
+                                _formKey.currentState!.fields['date_range']
+                                    ?.didChange(null);
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // SizedBox(
+                    //     height: 50,
+                    //     width: MediaQuery.of(context).size.width -
+                    //         2 * defaultmargin,
+                    //     child: ElevatedButton(
+                    //         onPressed: () {},
+                    //         style: ElevatedButton.styleFrom(
+                    //             primary: button2Color,
+                    //             shape: RoundedRectangleBorder(
+                    //                 side: BorderSide(color: primaryColor),
+                    //                 borderRadius: BorderRadius.circular(15))),
+                    //         child: Text(
+                    //           'Export',
+                    //           style: buttonStyle.copyWith(
+                    //               fontSize: 16,
+                    //               fontWeight: FontWeight.w500,
+                    //               color: primaryColor),
+                    //         ))),
+                    // child: TextFormField(
+                    //   cursorColor: Colors.white,
+                    //   readOnly: true,
+                    //   onTap: () {
+                    //     setState(() {
+                    //       _rangePicker.present();
+                    //     });
+                    //   },
+                    //   decoration: InputDecoration(
+                    //     icon: const Icon(Icons.calendar_today_rounded),
+                    //     labelText: 'From - To',
+                    //     hintText: ("${_startDate.value}-${_endDate.value}"),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

@@ -16,7 +16,7 @@ class _selamatdatangState extends State<selamatdatang> {
       onWillPop: showExitPopup,
       child: Scaffold(
         // resizeToAvoidBottomInset: true,
-        backgroundColor: primaryColor,
+        backgroundColor: backgroundColor,
         body: SafeArea(
           bottom: false,
           child: ListView(
@@ -33,18 +33,19 @@ class _selamatdatangState extends State<selamatdatang> {
               const SizedBox(
                 height: 36,
               ),
-              Text(
-                "Selamat Datang",
-                style: selamatdatangTextStyle.copyWith(
-                    fontSize: 36, color: button2Color),
-                textAlign: TextAlign.center,
-              ),
+              // Text(
+              //   "Selamat Datang",
+              //   style: selamatdatangTextStyle.copyWith(
+              //       fontSize: 36, color: button2Color),
+              //   textAlign: TextAlign.center,
+              // ),
               const SizedBox(
                 height: 15,
               ),
               Text(
-                "TSA END GAME bertujuan untuk meningkatkan keterampilan dan daya saing, \nproduktivitas, profesionalisme SDM bidang teknologi informasi dan komunikasi bagi angkatan kerja \nmuda Indonesia, masyarakat umum, dan aparatur sipil negara.",
-                style: deskripsiTextStyle.copyWith(fontSize: 14),
+                "MOP Green merupakan sistem informasi \n monitoring dan controlling greenhouse, tersedia dalam versi web untuk admin dan guest serta mobile untuk user.",
+                style: deskripsiTextStyle.copyWith(
+                    fontSize: 14, color: const Color(0xff737373)),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -91,7 +92,7 @@ class _selamatdatangState extends State<selamatdatang> {
                             });
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
+                          primary: button2Color,
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: button2Color, width: 3),
                               borderRadius: BorderRadius.circular(15))),
@@ -100,7 +101,7 @@ class _selamatdatangState extends State<selamatdatang> {
                         style: buttonStyle.copyWith(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
-                            color: button2Color),
+                            color: primaryColor),
                       ))),
             ],
           ),
@@ -133,20 +134,6 @@ class _selamatdatangState extends State<selamatdatang> {
                     style: buttonStyle.copyWith(fontSize: 14),
                   )),
             ],
-            //   title: const Text('Exit App'),
-            //   content: const Text('Do you want to exit an App?'),
-            //   actions: [
-            //     ElevatedButton(
-            //       onPressed: () => Navigator.of(context).pop(false),
-            //       //return false when click on "NO"
-            //       child: const Text('No'),
-            //     ),
-            //     ElevatedButton(
-            //       onPressed: () => Navigator.of(context).pop(true),
-            //       //return true when click on "Yes"
-            //       child: const Text('Yes'),
-            //     ),
-            //   ],
           ),
         ) ??
         false; //if showDialouge had returned null, then return false

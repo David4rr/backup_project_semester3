@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, avoid_print
 
 part of 'pages.dart';
 
@@ -10,6 +10,96 @@ class dashboard extends StatefulWidget {
 }
 
 class _dashboardState extends State<dashboard> {
+  Future<void> setupMqttClient() async {
+    await mqttClientManager.connect();
+    mqttClientManager.subscribe(pubTopic);
+  }
+
+  void setupUpdatesListener() {
+    mqttClientManager
+        .getMessagesStream()!
+        .listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+      final recMess = c![0].payload as MqttPublishMessage;
+      final pt =
+          MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      print('MQTTClient::Message received on topic: <${c[0].topic}> is $pt\n');
+
+      setState(() {
+        suhu = jsonDecode(pt)["temp1"];
+        kelembapan = jsonDecode(pt)["humadity1"];
+      });
+    });
+  }
+
+  // int dropdownIndex = 0;
+  // List data = [
+  //   const room1(),
+  //   const room2(),
+  //   const room3(),
+  //   const room4(),
+  // ];
+
+  @override
+  void dispose() {
+    mqttClientManager.disconnect();
+    super.dispose();
+  }
+
+  // late List<LiveData> chartData;
+  // late List<LiveData> chartData2;
+  // late List<LiveData> chartData3;
+  // late List<LiveData> chartData4;
+  // late List<LiveData> chartData5;
+  // late List<LiveData> chartData6;
+  // late List<LiveData> chartData7;
+  // late List<LiveData> chartData8;
+  // late chart.ChartSeriesController _chartSeriesController;
+  // late chart.ChartSeriesController _chartSeriesController2;
+  // late chart.ChartSeriesController _chartSeriesController3;
+  // late chart.ChartSeriesController _chartSeriesController4;
+  // late chart.ChartSeriesController _chartSeriesController5;
+  // late chart.ChartSeriesController _chartSeriesController6;
+  // late chart.ChartSeriesController _chartSeriesController7;
+  // late chart.ChartSeriesController _chartSeriesController8;
+  int suhu = 0;
+  int kelembapan = 0;
+  String pubTopic = "sensor";
+
+  //import class mqtt
+  MQTTClientManager mqttClientManager = MQTTClientManager();
+
+  @override
+  void initState() {
+    setupMqttClient();
+    setupUpdatesListener();
+    super.initState();
+    // manager.connect();
+    //  MQTTManager._client.connect();
+    // connect(
+    //     onConnected: () {
+    //       print("Connected");
+    //     },
+    //     onDisconnected: () {
+    //       print("Disconnected from server");
+    //     },
+    //     onSubscribed: (String) {
+    //       // MqttServerClient.withPort('1883');
+    //       print("Succcess subscribe");
+    //     },
+    //     onUnsubscribed: (String) {}
+    //     // print("gagal subscribe");
+    //     );
+    // chartData = getChartData();
+    // chartData2 = getChartData2();
+    // chartData3 = getChartData3();
+    // chartData4 = getChartData4();
+    // chartData5 = getChartData5();
+    // chartData6 = getChartData6();
+    // chartData7 = getChartData7();
+    // chartData8 = getChartData8();
+    // Timer.periodic(const Duration(minutes: 1), updateDataSource);
+    super.initState();
+  }
   // int dropdownIndex = 0;
   // List data = [
   //   const room1(),
@@ -29,7 +119,7 @@ class _dashboardState extends State<dashboard> {
           children: [
             Container(
               width: double.infinity,
-              height: 363,
+              // height: 363,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(20),
@@ -82,7 +172,7 @@ class _dashboardState extends State<dashboard> {
                                           pointers: <GaugePointer>[
                                             RangePointer(
                                               color: Colors.white,
-                                              value: 60,
+                                              value: suhu.toDouble(),
                                               onValueChanged: (value) {},
                                               cornerStyle:
                                                   CornerStyle.bothCurve,
@@ -100,7 +190,7 @@ class _dashboardState extends State<dashboard> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "65.0",
+                                                    suhu.toString(),
                                                     style: wikwokTextStyle,
                                                   ),
                                                   Text(
@@ -125,7 +215,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "23",
                                     style: wikwokTextStyle,
                                   ),
                                   const SizedBox(
@@ -136,7 +226,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "28",
                                     style: wikwokTextStyle,
                                   ),
                                   const SizedBox(
@@ -147,7 +237,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "21",
                                     style: wikwokTextStyle,
                                   ),
                                 ],
@@ -178,7 +268,7 @@ class _dashboardState extends State<dashboard> {
                                           pointers: <GaugePointer>[
                                             RangePointer(
                                               color: Colors.white,
-                                              value: 60,
+                                              value: kelembapan.toDouble(),
                                               onValueChanged: (value) {},
                                               cornerStyle:
                                                   CornerStyle.bothCurve,
@@ -196,7 +286,7 @@ class _dashboardState extends State<dashboard> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "65.0",
+                                                    kelembapan.toString(),
                                                     style: wikwokTextStyle,
                                                   ),
                                                   Text(
@@ -222,7 +312,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "68",
                                     style: wikwokTextStyle,
                                   ),
                                   const SizedBox(
@@ -233,7 +323,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "74",
                                     style: wikwokTextStyle,
                                   ),
                                   const SizedBox(
@@ -244,7 +334,7 @@ class _dashboardState extends State<dashboard> {
                                     style: meTextStyle,
                                   ),
                                   Text(
-                                    "25",
+                                    "65",
                                     style: wikwokTextStyle,
                                   ),
                                 ],
